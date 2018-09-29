@@ -13,7 +13,9 @@ var RoomsView = {
   render: _.template('<option><%-name%></option>'),
   
   renderRoomMessages: function() {
-    MessagesView.render($select.val());
+    MessagesView.$chats.html('');
+    MessagesView.render(RoomsView.$select.val());
+    // MessagesView.render(RoomsView.$select.val());
   },
 
   renderRoom: function(roomObj) {
@@ -26,8 +28,9 @@ var RoomsView = {
     
     let roomHTML = RoomsView.render(roomObj);
     RoomsView.$select.append(roomHTML);
-    Rooms.add(roomObj);
-    $(roomHTML).click(RoomsView.renderRoomMessages);
+    Rooms.storage.add(roomObj.roomname);
+    RoomsView.$select.mouseenter(FormView.populateMenu);
+    RoomsView.$select.change(RoomsView.renderRoomMessages);
   }
 
 };

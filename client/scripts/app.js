@@ -14,6 +14,7 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    setInterval(App.fetch, 1000);
 
   },
   // This function accepts a callback function, which by default is an anon. func. that does nothing.
@@ -23,10 +24,12 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      Messages.storage = [];
       data.results.forEach(message => Messages.storage.push(message));
-      // prev line should be moved to MessagesView.render. Should this, instead, store the messages in Messages?
+      
+      RoomsView.renderRoomMessages();
       callback();
-      MessagesView.render(/*currentroom*/);
+      // MessagesView.render('lobby');
     });
   },
 

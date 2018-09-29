@@ -9,6 +9,7 @@ var FormView = {
     FormView.$form.on('submit', FormView.handleSubmit);
     FormView.$addRoomButton.click(FormView.showAddRoomInput);
     FormView.$submitRoomName.click(FormView.createNewRoom);
+    FormView.populateMenu();
   },
   
   createNewRoom: function() {
@@ -32,6 +33,14 @@ var FormView = {
   setStatus: function(active) {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
+  },
+  
+  populateMenu: function() {
+    let currentRoom = $('select').val();
+    $('select').html('');
+    Messages.storage.forEach(message => Rooms.storage.add(message.roomname));
+    Rooms.storage.forEach(roomName => RoomsView.renderRoom({ 'name' : roomName }));
+    $('select').val(currentRoom);
   }
 
 };

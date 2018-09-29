@@ -19,3 +19,13 @@
 
 -[ ] Gold plates
   -[ ] Display error message on submit of empty message
+  
+  refactor ideas:
+    -[ ] separate view scripts from other scripts, parse+app, views, models
+      -[ ] add folders, change script tag references in index.html & specrunner
+-[ ] ui considerations:
+  -[ ] clear text fields after submit
+  -[ ] trigger hide and set when we submit a new room
+  -[ ] start spinner and stop spinner when a new room has been selected, rendered.
+
+-[ ] turn render room messages into render current room

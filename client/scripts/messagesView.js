@@ -4,7 +4,7 @@ var MessagesView = {
 
   initialize: function() {
     //should call MessagesView.render for the current room? Anything else?
-    $(document).ajaxSuccess(RoomsView.renderRoomMessages);
+    // $(document).ajaxSuccess(RoomsView.renderRoomMessages);
   },
 
   render: function(roomName) {

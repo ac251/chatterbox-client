@@ -8,7 +8,7 @@ var Messages = {
     return message;
   },
   
-  storage: [],
+  storage: []
 };
 
 
