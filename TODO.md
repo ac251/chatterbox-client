@@ -7,6 +7,8 @@
   -[ ] What do we do with it?
   -[ ] Complete Friends, Messages
   -[ ] Complete Messages
+  -[ ] Display friends somehow
+  -[ ] indicate to user that usernames are clickable
 
 -[ ] Complete messagesView and messageView?
 -[ ] Parse.create: build a function that saves a message to the server

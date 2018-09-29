@@ -11,6 +11,10 @@ var RoomsView = {
   },
 
   render: _.template('<option><%-name%></option>'),
+  
+  renderRoomMessages: function() {
+    MessagesView.render($select.val());
+  },
 
   renderRoom: function(roomObj) {
     // inputs: string
@@ -20,8 +24,10 @@ var RoomsView = {
     // strategy:
     // append a new <option> tag to the rooms <select> tag. 
     
-    RoomsView.$select.append(RoomsView.render(roomObj));
+    let roomHTML = RoomsView.render(roomObj);
+    RoomsView.$select.append(roomHTML);
     Rooms.add(roomObj);
+    $(roomHTML).click(RoomsView.renderRoomMessages);
   }
 
 };

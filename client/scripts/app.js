@@ -23,9 +23,10 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-      data.results.forEach(message => MessagesView.renderMessage(message));
-
+      data.results.forEach(message => Messages.storage.push(message));
+      // prev line should be moved to MessagesView.render. Should this, instead, store the messages in Messages?
       callback();
+      MessagesView.render(/*currentroom*/);
     });
   },
 

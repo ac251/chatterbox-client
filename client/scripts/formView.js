@@ -8,7 +8,11 @@ var FormView = {
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
     FormView.$addRoomButton.click(FormView.showAddRoomInput);
-    FormView.$submitRoomName.click(() => RoomsView.renderRoom(({ 'name': FormView.$addRoomInput.val() } )));
+    FormView.$submitRoomName.click(FormView.createNewRoom);
+  },
+  
+  createNewRoom: function() {
+    RoomsView.renderRoom(({ 'name': FormView.$addRoomInput.val() } ));
   },
   
   showAddRoomInput: function() {

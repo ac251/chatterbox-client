@@ -3,9 +3,20 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
+    //should call MessagesView.render for the current room? Anything else?
+    $(document).ajaxSuccess(RoomsView.renderRoomMessages);
   },
 
-  render: function(room) {
+  render: function(roomName) {
+    if (roomName === 'lobby') {
+      Messages.storage.forEach(message => MessagesView.renderMessage(message));
+    }
+    Messages.storage.forEach(message => {
+      if (message.roomname === roomName) {
+        MessagesView.renderMessage(message);
+      }
+
+    });
   },
 
   renderMessage: function(messageObj) {
