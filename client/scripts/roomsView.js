@@ -5,6 +5,7 @@ var RoomsView = {
 
   initialize: function() {
     for (roomObj in Rooms.storage) {
+      debugger;
       RoomsView.renderRoom(roomObj);
     }
   },
@@ -12,7 +13,6 @@ var RoomsView = {
   render: _.template('<option><%-name%></option>'),
 
   renderRoom: function(roomObj) {
-    debugger;
     // inputs: string
     // outputs: no outputs
     // edge cases: submitted room doesn't exist. 

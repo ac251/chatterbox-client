@@ -3,7 +3,6 @@ var Parse = {
   server: `http://parse.${window.CAMPUS}.hackreactor.com/chatterbox/classes/messages`,
 
   create: function(message, successCB, errorCB = null) {
-    debugger;
     // todo: save a message to the server
     // inputs: string, function, function
     // outputs: nothing
