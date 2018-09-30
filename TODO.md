@@ -21,8 +21,9 @@
   -[ ] Display error message on submit of empty message
   
   refactor ideas:
-    -[ ] separate view scripts from other scripts, parse+app, views, models
-      -[ ] add folders, change script tag references in index.html & specrunner
+    -[X] separate view scripts from other scripts, parse+app, views, models
+      -[X] add folders, change script tag references in index.html & specrunner
+      -[ ] add currentRoom property, replace all references to $addRoomIput.val() with ref to property
 -[ ] ui considerations:
   -[ ] clear text fields after submit
   -[ ] trigger hide and set when we submit a new room

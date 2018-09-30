@@ -2,12 +2,21 @@ var RoomsView = {
 
   $button: $('#rooms button'),
   $select: $('#rooms select'),
+  $addRoomButton: $('#addRoomButton'),
+  $addRoomInput: $('#addRoomInputSpan').find('input'),
+  $addRoomInputSpan: $('#addRoomInputSpan'),
+  $submitRoomName: $('#submitRoomName'),
 
   initialize: function() {
     for (roomObj in Rooms.storage) {
       debugger;
       RoomsView.renderRoom(roomObj);
     }
+    RoomsView.$select.mouseenter(RoomsView.populateMenu);
+    RoomsView.$select.change(MessagesView.render);
+    RoomsView.$addRoomButton.click(RoomsView.showAddRoomInput);
+    RoomsView.$submitRoomName.click(RoomsView.createNewRoom);
+    RoomsView.populateMenu();
   },
 
   render: _.template('<option><%-name%></option>'),
@@ -29,8 +38,26 @@ var RoomsView = {
     let roomHTML = RoomsView.render(roomObj);
     RoomsView.$select.append(roomHTML);
     Rooms.storage.add(roomObj.roomname);
-    RoomsView.$select.mouseenter(FormView.populateMenu);
-    RoomsView.$select.change(RoomsView.renderRoomMessages);
+    
+  },
+  
+  createNewRoom: function() {
+    RoomsView.renderRoom(({ 'name': RoomsView.$addRoomInput.val() } ));
+    RoomsView.$addRoomInputSpan.val('');
+    RoomsView.showAddRoomInput();
+  },
+  
+  showAddRoomInput: function() {
+    RoomsView.$addRoomInputSpan.slideToggle();
+    RoomsView.$addRoomButton.text() === 'Add Room' ? RoomsView.$addRoomButton.text('Hide') : RoomsView.$addRoomButton.text('Add Room');
+  },
+  
+  populateMenu: function() {
+    let currentRoom = $('select').val();
+    $('select').html('');
+    Messages._storage.forEach(message => Rooms.storage.add(message.roomname));
+    Rooms.storage.forEach(roomName => RoomsView.renderRoom({ 'name' : roomName }));
+    $('select').val(currentRoom);
   }
 
 };

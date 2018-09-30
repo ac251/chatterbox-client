@@ -4,15 +4,16 @@ var MessagesView = {
 
   initialize: function() {
     //should call MessagesView.render for the current room? Anything else?
-    // $(document).ajaxSuccess(RoomsView.renderRoomMessages);
+    // $(document).ajaxSuccess(MessagesView.render);
   },
 
-  render: function(roomName) {
-    if (roomName === 'lobby') {
-      Messages.storage.forEach(message => MessagesView.renderMessage(message));
+  render: function() {
+    MessagesView.$chats.html('');
+    if (RoomsView.$select.val() === 'lobby') {
+      Messages._storage.forEach(message => MessagesView.renderMessage(message));
     }
-    Messages.storage.forEach(message => {
-      if (message.roomname === roomName) {
+    Messages._storage.forEach(message => {
+      if (message.roomname === RoomsView.$select.val()) {
         MessagesView.renderMessage(message);
       }
 
@@ -28,7 +29,7 @@ var MessagesView = {
     // might be messageView.render(). 
     if (messageObj.text && messageObj.username && messageObj.roomname) {
       let $myMessage = $(MessageView.render(messageObj));
-      $myMessage.appendTo($('#chats'));
+      $myMessage.prependTo(MessagesView.$chats);
       $myMessage.find('.username').click(() => Friends.toggleStatus(messageObj.username));
     }
     

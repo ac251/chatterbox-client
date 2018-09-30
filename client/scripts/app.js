@@ -14,7 +14,7 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-    setInterval(App.fetch, 1000);
+    setInterval(App.fetch, 2000);
 
   },
   // This function accepts a callback function, which by default is an anon. func. that does nothing.
@@ -24,10 +24,7 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-      Messages.storage = [];
-      data.results.forEach(message => Messages.storage.push(message));
-      
-      RoomsView.renderRoomMessages();
+      Messages.update(data.results, MessagesView.render);
       callback();
       // MessagesView.render('lobby');
     });

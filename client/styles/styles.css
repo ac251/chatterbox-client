@@ -92,3 +92,8 @@ form input[type=text] {
     display: none;
 }
 
+.username:hover {
+    color: blue;
+    cursor: pointer;
+}
+
