@@ -9,12 +9,12 @@ var Messages = {
   },
   
   update: function(messages, callback = () => {}) {
-    for (let i = 0; i < messages.length; i++) {
-      let oldLength = Messages._storage.size;
+    let oldLength = Messages._storage.size;
+    for (let i = messages.length - 1; i >= 0; i--) {
       let myMessage = messages[i];
       Messages._storage.set(myMessage.objectId, myMessage);
-      Messages._storage.size !== oldLength ? callback() : null;
     }
+    Messages._storage.size !== oldLength ? callback() : null;
   },
   
   add: function(message, callback = () => {}) {

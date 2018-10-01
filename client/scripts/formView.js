@@ -9,10 +9,10 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
     let myUsername = App.username.split('%20').join(' ');
-    let message = Messages.NewMessage(myUsername, FormView.$form.find('input').val(), RoomsView.$select.val());
+    let message = Messages.NewMessage(myUsername, FormView.$form.find('input').val(), Rooms.currentRoom);
     Parse.create(message, data => {
-      debugger;
       _.extend(message, data);
+      debugger;
       Messages.add(message, () => MessagesView.renderMessage(message));
     });
     $('#message').val('');

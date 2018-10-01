@@ -11,13 +11,13 @@ var MessagesView = {
     MessagesView.$chats.html('');
     if (RoomsView.$select.val() === 'lobby') {
       Messages._storage.forEach(message => MessagesView.renderMessage(message));
-    }
-    Messages._storage.forEach(message => {
+    } else {
+      Messages._storage.forEach(message => {
       if (message.roomname === RoomsView.$select.val()) {
         MessagesView.renderMessage(message);
       }
-
     });
+    }
   },
 
   renderMessage: function(messageObj) {

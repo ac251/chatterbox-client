@@ -14,7 +14,7 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-    setInterval(App.fetch, 2000);
+    setInterval(App.fetch, 3000);
 
   },
   // This function accepts a callback function, which by default is an anon. func. that does nothing.
@@ -23,7 +23,6 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data);
       Messages.update(data.results, MessagesView.render);
       callback();
       // MessagesView.render('lobby');
